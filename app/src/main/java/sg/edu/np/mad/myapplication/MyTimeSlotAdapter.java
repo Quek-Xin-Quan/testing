@@ -34,7 +34,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyTimeSlotViewHolder holder, int position) {
-        holder.txt_time_slot.setText(new StringBuilder(Variables.convertTimeSlot(position)).toString());
+        holder.txt_time_slot.setText("as");
         if (timeSlotList.size() == 0) {
             holder.txt_time_slot_description.setText("Available");
 
@@ -48,7 +48,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotViewHolder
 
     @Override
     public int getItemCount() {
-        return timeSlotList.size();
+        return 9;
     }
 }
 
