@@ -14,10 +14,10 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.MyViewHolder> {
+public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotViewHolder> {
     Context context;
 
-    ArrayList<TimeSlot>timeSlotList= new ArrayList<TimeSlot>();
+    ArrayList<TimeSlot> timeSlotList = new ArrayList<TimeSlot>();
 
     public MyTimeSlotAdapter(Context context, ArrayList<TimeSlot> timeSlotList) {
         this.context = context;
@@ -26,20 +26,21 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyTimeSlotViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context)
-                .inflate(R.layout.bookingslots, parent,false);
-        return new MyViewHolder(itemView);
+                .inflate(R.layout.bookingslots, parent, false);
+        return new MyTimeSlotViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyTimeSlotViewHolder holder, int position) {
         holder.txt_time_slot.setText(new StringBuilder(Variables.convertTimeSlot(position)).toString());
-        if(timeSlotList.size()==0){
-            holder.txt_time_slot.
+        if (timeSlotList.size() == 0) {
+            holder.txt_time_slot_description.setText("Available");
 
         } //if all slots is available,show
-        else {
+        else{
+            holder.txt_time_slot_description.setText("Booked");
 
         }//if some are booked
     }
@@ -49,14 +50,6 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
     public int getItemCount() {
         return timeSlotList.size();
     }
-
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView txt_time_slot,txt_time_slot_description;
-        CardView card_time_slot;
-        public MyViewHolder(@NonNull View itemView){
-            super(itemView);
-            card_time_slot=(CardView) itemView.findViewById(R.id.card_time_slot);
-            TextView txt_time_slot =
-        }
-    }
 }
+
+
