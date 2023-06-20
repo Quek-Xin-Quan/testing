@@ -1,6 +1,7 @@
 package sg.edu.np.mad.myapplication;
 
 import android.content.Context;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,12 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotViewHolder
 
 
     ArrayList<TimeSlot> timeSlotList;
+    private ItemClickListener mItemClickListener;
 
-    public MyTimeSlotAdapter(ArrayList<TimeSlot> timeSlotList) {
+    public MyTimeSlotAdapter(ArrayList<TimeSlot> timeSlotList,ItemClickListener itemClickListener) {
 
         this.timeSlotList = timeSlotList;
+        this.mItemClickListener=itemClickListener;
     }
 
     @NonNull
@@ -34,7 +37,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyTimeSlotViewHolder holder, int position) {
-        holder.txt_time_slot.setText("as");
+        holder.txt_time_slot.setText(new StringBuilder(Variables.convertTimeSlot(position)).toString());
         if (timeSlotList.size() == 0) {
             holder.txt_time_slot_description.setText("Available");
 
@@ -43,13 +46,22 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotViewHolder
             holder.txt_time_slot_description.setText("Booked");
 
         }//if some are booked
+        holder.itemView.setOnClickListener(view->{
+            mItemClickListener.onItemClick(timeSlotList.get(position));//get position of item in recyclerview
+
+        });
     }
 
 
     @Override
     public int getItemCount() {
-        return 9;
+        return timeSlotList.size();
     }
+
+    public interface ItemClickListener{
+        void onItemClick(TimeSlot timeslot);
+    }
+
 }
 
 
