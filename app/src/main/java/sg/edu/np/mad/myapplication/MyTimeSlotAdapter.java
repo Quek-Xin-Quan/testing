@@ -24,6 +24,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotViewHolder
     public MyTimeSlotAdapter(ArrayList<TimeSlot> timeSlotList,ItemClickListener itemClickListener) {
 
         this.timeSlotList = timeSlotList;
+
         this.mItemClickListener=itemClickListener;
     }
 

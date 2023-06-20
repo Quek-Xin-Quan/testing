@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="Available"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="24sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
