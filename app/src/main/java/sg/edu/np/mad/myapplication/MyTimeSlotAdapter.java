@@ -15,19 +15,19 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotViewHolder> {
-    Context context;
 
-    ArrayList<TimeSlot> timeSlotList = new ArrayList<TimeSlot>();
 
-    public MyTimeSlotAdapter(Context context, ArrayList<TimeSlot> timeSlotList) {
-        this.context = context;
+    ArrayList<TimeSlot> timeSlotList;
+
+    public MyTimeSlotAdapter(ArrayList<TimeSlot> timeSlotList) {
+
         this.timeSlotList = timeSlotList;
     }
 
     @NonNull
     @Override
     public MyTimeSlotViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context)
+        View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.bookingslots, parent, false);
         return new MyTimeSlotViewHolder(itemView);
     }
